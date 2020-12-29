@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const auth = require("../middleware/auth");
 
 router.post('/', async (req, res) => {
-    const {username, email, address, image,password} = req.body;
+    const {username, email,password} = req.body;
     
     try { 
      //verifyinig if the email is already used 
@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
         else{
 
         const hashedPassword = await bcrypt.hash(password, 10);
-          const user = new User({username, hashedPassword, email, image, address});
+          const user = new User({username, hashedPassword, email});
         // Saving the user in the database
         const results = await user.save();
         res.send(results);
