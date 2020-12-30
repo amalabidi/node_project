@@ -1,5 +1,3 @@
-/*const {JsonWebTokenError} = require('jsonwebtoken');
-const config = require('config');*/
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
@@ -28,10 +26,7 @@ const userSchema = new mongoose.Schema({
         type: String
     }
    
-   /* isAdmin: {
-        type: Boolean,
-        required:true
-    }*/
+   
 });
 
 userSchema.methods.generateToken = function () {
