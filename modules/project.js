@@ -23,8 +23,8 @@ const projectSchema = new mongoose.Schema({
        default: new Date(),
     },
     collaborators: {
-        type: [String],
-        default: [this.leaderId]
+        type: [String]
+       
         
     },
     tasks: {

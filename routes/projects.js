@@ -1,13 +1,17 @@
 const router = require('express').Router();
 const {Project} = require('../modules/project');
-
+const {User} =require('../modules/user');
 
 router.post('/', async (req, res) => {
     const {name,description,leaderId/*,collaborators,tasks*/} = req.body;
     console.log("hello");
     try {
         console.log("hello2") ;
-       const project = new Project({name,description,leaderId/*,collaborators,tasks*/});
+      
+       const collaborators=[String];
+       collaborators[0]=leaderId;
+       const project = new Project({name,description,leaderId,collaborators/*,tasks*/});
+       
        console.log("hello3");
         const results = await project.save();
         console.log("hello4");
@@ -16,7 +20,7 @@ router.post('/', async (req, res) => {
     
      catch (ex) {  
         res.send(ex); }
-})
+});
 router.get('/', async (req, res) => {
     try {
         
@@ -25,7 +29,10 @@ router.get('/', async (req, res) => {
     } catch (ex) {
         res.send(ex);
     }
-})
+});
+
+
+
 
 router.delete('/:id',async (req,res) => {
    const {idLeader}=req.body;
@@ -44,7 +51,7 @@ router.delete('/:id',async (req,res) => {
     } catch (err) {
         res.send(err);
     }
-})
+});
 router.put('/', async (req, res) => {
     try {
 
@@ -65,7 +72,11 @@ router.put('/', async (req, res) => {
     res.send(project);
     }} catch (ex) {
         res.send(ex);}
-})
+});
+
+
+
+
 
 
 module.exports = router;
