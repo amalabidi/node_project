@@ -60,7 +60,6 @@ router.put('/',/*auth, /* admin],*/ async (req, res) => {
 
         let olduser = await User.find({"_id": req.body.id});
         if (!olduser) {
-          // checking if the user already exists or not using the old email extracted from the token
             res.send({"error":"user doesn't exist"});
             console.log("nooo");
             return null;
@@ -79,7 +78,7 @@ router.put('/',/*auth, /* admin],*/ async (req, res) => {
         console.log(update);
       
         let user = await User.findByIdAndUpdate(filter, update,  {new: true})
-      
+      console.log("updated");
         newtoken = user.generateToken();
         res.send(user);
     }} catch (ex) {
