@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {Project} = require('../modules/project');
-const {User} =require('../modules/user');
+
 
 router.post('/', async (req, res) => {
     const {name,description,leaderId/*,collaborators,tasks*/} = req.body;
@@ -73,6 +73,17 @@ router.put('/', async (req, res) => {
     }} catch (ex) {
         res.send(ex);}
 });
+//making search functionality
+router.get('/search/:search', async (req, res) => {
+    const {search} = req.params;
+    console.log(search) ;
+    if (search){
+        const projects = await Project.find({ name: { $regex: search ,$options: 'i'}});
+        res.send(projects);
+    }else{
+        res.send("no project");
+    }
+})
 
 
 
