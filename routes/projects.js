@@ -30,6 +30,31 @@ router.get('/', async (req, res) => {
         res.send(ex);
     }
 });
+router.get('/:idleader', async (req, res) => {
+    try {
+        let array=[];
+        
+        const projects = await Project.find({});
+        for (var counter = 0; counter < projects[counter].collaborators.length; counter++) {
+            console.log("in loop");
+            console.log("counter:",counter);
+        const found = projects[counter].collaborators.indexOf(req.params.idleader);
+        console.log(found);
+        if (found!=-1){
+            console.log("coucou");
+            console.log("lprojet",projects[counter]);
+           array.push(projects[counter]);
+       res.send(array);
+        }
+         else{
+             console.log("10");
+             res.send("you don't have any project yet ");
+         }
+        }
+    } catch (ex) {
+        res.send(ex);
+    }
+});
 
 
 
