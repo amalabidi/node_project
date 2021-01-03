@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const users = require('./routes/users');
 const projects = require('./routes/projects');
 const collaborators = require('./routes/collaborators');
+const login= require('./routes/authentification');
 const app = express();
 
 app.use(express.json());
@@ -25,6 +26,7 @@ mongoose.connect( `mongodb+srv://amalabidi:amal123456789@cluster0.g1qvx.mongodb.
 app.use("/users", users);
 app.use("/projects",projects);
 app.use("/collab",collaborators);
+app.use("/login",login);
 //choose the backend port 
   const port = process.env.PORT || 3001;
 

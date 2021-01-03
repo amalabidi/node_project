@@ -21,9 +21,11 @@ const userSchema = new mongoose.Schema({
     },
     image: {
         type: String,
+       
     },
     address: {
-        type: String
+        type: String,
+       
     }
    
    
